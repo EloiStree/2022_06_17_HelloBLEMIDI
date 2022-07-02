@@ -36,3 +36,6 @@ Fun secondary but the most useful:
 
 Sad Note :
 - Unfortunately, Midi USB is understood by NAudio but not the BLE one.
+
+
+
