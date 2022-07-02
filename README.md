@@ -29,3 +29,10 @@ My current target device own and so targeted for now :
 Secondary:
 - To have perfect timing macro, the user push sequence of key with timing to be push on the computer at <1ms execution timing.
 - From a computer control a pair computer with BLE actions to do action without installing software.
+
+Fun secondary but the most useful:
+- Use Infrared Red to Action on linked computer.
+
+
+Sad Note :
+- Unfortunately, Midi USB is understood by NAudio but not the BLE one.
