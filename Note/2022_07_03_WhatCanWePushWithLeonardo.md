@@ -53,3 +53,14 @@ K:NP*
 K:NP/
 K:NP-
 K:NP+
+
+KP:left
+KR:left
+KP:right
+KR:right
+KP:up
+KR:up
+KP:down
+KR:down
+
+K:V+
