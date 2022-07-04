@@ -1,0 +1,44 @@
+// #include <Arduino.h>
+// #include <string.h>
+// #include <USB-MIDI.h>
+// #include "Adafruit_BLE.h"
+// #include "Adafruit_BLEMIDI.h"
+// #include "BluefruitConfig.h"
+// #include "AbstractPushMidi.h"
+
+// USBMIDI_CREATE_DEFAULT_INSTANCE();
+
+//  AbstractPushMidi::AbstractPushMidi(Adafruit_BLEMIDI &bleLink){
+//     this.m_bleLink = bleLink:
+//  }
+
+//  void AbstractPushMidi:: PushMidiNoteWithDelay(
+//  int delayInMS ,
+//  int note ,
+//  int velocity ,
+//  int channel=1 ){
+//         PushMidiNoteOn(note, velocity, channel);
+//          delay(delayInMS);
+//         PushMidiNoteOff(note, velocity, channel);
+//  }
+
+//  void AbstractPushMidi::PushMidiNoteOn(
+//  int note ,
+//  int velocity ,
+//  int channel =1){
+//       MIDI.sendNoteOn(note, velocity, channel);
+//       if (isConnected) {
+//         m_bleLink.send(0x90, note, velocity);
+//       }
+      
+//  }
+
+//  void  AbstractPushMidi::PushMidiNoteOff(
+//  int note ,
+//  int velocity ,
+//  int channel =1){
+//          MIDI.sendNoteOff(note, velocity, channel);
+//         if (isConnected) {
+//           m_bleLink.send(0x80, note, velocity);
+//         }
+//  }

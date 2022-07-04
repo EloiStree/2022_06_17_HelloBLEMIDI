@@ -1,0 +1,1 @@
+int signalPin=A0;

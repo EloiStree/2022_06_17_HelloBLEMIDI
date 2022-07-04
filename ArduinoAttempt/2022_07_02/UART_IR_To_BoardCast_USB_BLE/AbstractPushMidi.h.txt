@@ -1,0 +1,23 @@
+// #ifndef AbstractPushMidi_H
+// #define AbstractPushMidi_H
+
+// #include <Arduino.h>
+// #include <string.h>
+// #include <USB-MIDI.h>
+// #include "Adafruit_BLE.h"
+// #include "Adafruit_BLEMIDI.h"
+// #include "BluefruitConfig.h"
+
+
+// class AbstractPushMidi
+// {
+
+//   public: 
+//   Adafruit_BLEMIDI &m_bleLink;
+//   AbstractPushMidi(Adafruit_BLEMIDI &bleLink);
+//   void PushMidiNoteWithDelay( int delayInMS , int note , int velocity , int channel );
+//   void PushMidiNoteOn(  int note , int velocity , int channel );
+//   void PushMidiNoteOff(  int note , int velocity , int channel );
+// };
+
+// #endif

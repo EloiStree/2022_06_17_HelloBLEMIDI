@@ -1,0 +1,33 @@
+// #include <Arduino.h>
+// #include <string.h>
+// #include <USB-MIDI.h>
+
+// class DebugLogs{
+  
+// static void BleMidiRX(uint16_t timestamp, uint8_t status, uint8_t byte1, uint8_t byte2) {
+//   Serial.print("[MIDI ");
+//   Serial.print(timestamp);
+//   Serial.print(" ] ");
+//   Serial.print(status, HEX);
+//   Serial.print(" ");
+//   Serial.print(byte1, HEX);
+//   Serial.print(" ");
+//   Serial.print(byte2, HEX);
+//   Serial.print(" ");
+//   Serial.println();
+// }
+
+// static void handleNoteOnUSB(byte inChannel, byte inNumber, byte inVelocity) {
+//   Serial.print("NoteOn  ");
+//   Serial.print(inNumber);
+//   Serial.print("\tvelocity: ");
+//   Serial.println(inVelocity);
+// }
+
+// static void handleNoteOffUSB(byte inChannel, byte inNumber, byte inVelocity) {
+//   Serial.print("NoteOff ");
+//   Serial.print(inNumber);
+//   Serial.print("\tvelocity: ");
+//   Serial.println(inVelocity);
+// }
+// }
