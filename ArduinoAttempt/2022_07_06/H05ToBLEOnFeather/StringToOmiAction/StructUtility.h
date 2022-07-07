@@ -58,19 +58,23 @@ struct KeyboardFunctionStroke{
   byte f1To24;
 };
 
-struct PrintToAllSerialText{
+struct TransitToAllSerialText{
   String textToPrint;
 };
 struct PrintDefaultSerialText{
   String textToPrint;
 };
-struct PrintOnHC05SerialText{
+struct TransitOnHCXXSerialText{
   String textToPrint;
 };
-struct PrintOnBLESerialText{
+struct TransitOnBLESerialText{
   String textToPrint;
 };
-
+struct SwitchPinIntMode{
+  int pinId;
+};struct SwitchPinAsStringMode{
+  String pinIdAsString;
+};
 
 struct CallFunctionInArduino{
   String functionKeyName;

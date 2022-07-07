@@ -48,8 +48,9 @@ static const void ConvertToCommandLine(String text, CommandLineKeyValue* command
 
 static const void GetPressionFromCharKey(CommandLineKeyValue* cmd, PressionRequest* action) {
 
-  action->press = (cmd->keyLength > 1 && (cmd->key[1] == 'p' || cmd->key[1] == 'P'));
-  action->release = (cmd->keyLength > 1 && (cmd->key[1] == 'r' || cmd->key[1] == 'R'));
+  int i = cmd->keyLength - 1;
+  action->press = (cmd->keyLength > 1 && (cmd->key[i] == 'p' || cmd->key[i] == 'P'));
+  action->release = (cmd->keyLength > 1 && (cmd->key[i] == 'r' || cmd->key[i] == 'R'));
   if (!action->press && !action->release) {
     action->press = true;
     action->release = true;
@@ -72,33 +73,172 @@ static const bool StartWith(char c, CommandLineKeyValue* cmd) {
   return cmd->key.length() > 0 && cmd->key[0] == c;
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-static const void TryConvert_CharToDigit(bool* converted, char c, int* index) {
-  *converted = true;
-  if (c == '0'){ *index = 0;return;}
-  if (c == '1'){ *index = 1;return;}
-  if (c == '2'){ *index = 2;return;}
-  if (c == '3'){ *index = 3;return;}
-  if (c == '4'){ *index = 4;return;}
-  if (c == '5'){ *index = 5;return;}
-  if (c == '6'){ *index = 6;return;}
-  if (c == '7'){ *index = 7;return;}
-  if (c == '8'){ *index = 8;return;}
-  if (c == '9'){ *index = 9;return;}
-  *converted = false;
+static const bool TryConvert_CharToDigit(char c, int* index) {
+  *index = 0;
+  if (c == '0') {
+    *index = 0;
+    return true;
+  }
+  if (c == '1') {
+    *index = 1;
+    return true;
+  }
+  if (c == '2') {
+    *index = 2;
+    return true;
+  }
+  if (c == '3') {
+    *index = 3;
+    return true;
+  }
+  if (c == '4') {
+    *index = 4;
+    return true;
+  }
+  if (c == '5') {
+    *index = 5;
+    return true;
+  }
+  if (c == '6') {
+    *index = 6;
+    return true;
+  }
+  if (c == '7') {
+    *index = 7;
+    return true;
+  }
+  if (c == '8') {
+    *index = 8;
+    return true;
+  }
+  if (c == '9') {
+    *index = 9;
+    return true;
+  }
+  return false;
 }
+static const String RemoveAllButDigit(String text) {
+
+  int l = text.length();
+  for (int i = l - 1; i > -1; i--) {
+    if (text[i] == '0' || text[i] == '1' || text[i] == '2' || text[i] == '3' || text[i] == '4' || text[i] == '5' || text[i] == '6' || text[i] == '7' || text[i] == '8' || text[i] == '9') {
+    } else {
+      text.remove(i, 1);
+    }
+  }
+  return text;
+}
+static const bool TryConvert_CharToF24Max(String text, int* index) {
+
+  *index = 50;
+  text.trim();
+  if (text.equals("0")) {
+    *index = 0;
+    return true;
+  }
+  if (text.equals("1")) {
+    *index = 1;
+    return true;
+  }
+  if (text.equals("2")) {
+    *index = 2;
+    return true;
+  }
+  if (text.equals("3")) {
+    *index = 3;
+    return true;
+  }
+  if (text.equals("4")) {
+    *index = 4;
+    return true;
+  }
+  if (text.equals("5")) {
+    *index = 5;
+    return true;
+  }
+  if (text.equals("6")) {
+    *index = 6;
+    return true;
+  }
+  if (text.equals("7")) {
+    *index = 7;
+    return true;
+  }
+  if (text.equals("8")) {
+    *index = 8;
+    return true;
+  }
+  if (text.equals("9")) {
+    *index = 9;
+    return true;
+  }
+  if (text.equals("10")) {
+    *index = 10;
+    return true;
+  }
+  if (text.equals("11")) {
+    *index = 11;
+    return true;
+  }
+  if (text.equals("12")) {
+    *index = 12;
+    return true;
+  }
+  if (text.equals("13")) {
+    *index = 13;
+    return true;
+  }
+  if (text.equals("14")) {
+    *index = 14;
+    return true;
+  }
+  if (text.equals("15")) {
+    *index = 15;
+    return true;
+  }
+  if (text.equals("16")) {
+    *index = 16;
+    return true;
+  }
+  if (text.equals("17")) {
+    *index = 17;
+    return true;
+  }
+  if (text.equals("18")) {
+    *index = 18;
+    return true;
+  }
+  if (text.equals("19")) {
+    *index = 19;
+    return true;
+  }
+  if (text.equals("20")) {
+    *index = 20;
+    return true;
+  }
+  if (text.equals("21")) {
+    *index = 21;
+    return true;
+  }
+  if (text.equals("22")) {
+    *index = 22;
+    return true;
+  }
+  if (text.equals("23")) {
+    *index = 23;
+    return true;
+  }
+  if (text.equals("24")) {
+    *index = 24;
+    return true;
+  }
+  return false;
+}
+
+
+
+
+
 
 
 
@@ -111,24 +251,79 @@ static const bool IsTransitionCommand(CommandLineKeyValue* cmd) {
   char* start[] = { 'T', 't' };
   return StartWith(start, 2, cmd);
 }
+static const bool TryConvertTo(CommandLineKeyValue* cmd, TransitToAllSerialText* actionOut) {
 
-
-static const void TryConvertTo(bool* converted, CommandLineKeyValue* cmd,  PrintToAllSerialText* actionOut) {
-  *converted = false;
-  if (!IsTransitionCommand(cmd)) return;
-  actionOut->textToPrint=cmd-> value;
-
-    *converted = true;
+  if (!IsTransitionCommand(cmd)) return false;
+  actionOut->textToPrint = cmd->value;
+  return true;
 }
-
-
-
 /////////////////////////////////// TRANSMIT TO ALL END
 
 
-static const bool IsNumpadCommand(CommandLineKeyValue* cmd) {
-  return StartWith("NP", cmd);
+
+static const bool IsKeyCommand(CommandLineKeyValue* cmd) {
+  char* start[] = { 'K', 'k' };
+  return StartWith(start, 2, cmd);
 }
+
+//KeyboardAlphaStroke  KeyboardNumpadStroke
+static const bool TryConvertTo(CommandLineKeyValue* cmd, KeyboardNumpadStroke* actionOut) {
+
+if (!IsKeyCommand(cmd))
+    return false;
+  if (cmd->valueLength > 0 && (cmd->value[0] == 'N' || cmd->value[0] == 'n')) {
+    String s = cmd->value.substring(0);
+    s = RemoveAllButDigit(s);
+    int value = 0; 
+    if (s.length()>0 && TryConvert_CharToDigit(s[0], &value)) {
+      actionOut->numberToStroke0To9 = value;
+      return true;
+    }
+  }
+  return false;
+}
+
+
+
+
+//KeyboardAlphaStroke  KeyboardNumpadStroke
+static const bool TryConvertTo(CommandLineKeyValue* cmd, KeyboardAlphaStroke* actionOut) {
+
+  if (!IsKeyCommand(cmd))
+    return false;
+  if (cmd->valueLength > 0 && (cmd->value[0] == 'A' || cmd->value[0] == 'a')) {
+    String s = cmd->value.substring(0);
+    s = RemoveAllButDigit(s);
+     int value = 0; 
+    if (s.length()>0 && TryConvert_CharToDigit(s[0], &value)) {
+      actionOut->numberToStroke0To9 = value;
+      return true;
+    }
+  }
+  return false;
+}
+
+
+
+
+static const bool TryConvertTo(CommandLineKeyValue* cmd, KeyboardFunctionStroke* actionOut) {
+
+  if (!IsKeyCommand(cmd))
+    return false;
+
+  if (cmd->valueLength > 0 && (cmd->value[0] == 'F' || cmd->value[0] == 'f')) {
+    String s = cmd->value.substring(0);
+    s = RemoveAllButDigit(s);
+    int value = 0;
+    if (TryConvert_CharToF24Max(s, &value)) {
+      actionOut->f1To24 = value;
+      return true;
+    }
+  }
+  return false;
+}
+
+
 
 
 ////////////////////////////////////////// MIDI START
@@ -140,9 +335,12 @@ static const bool IsKeyMidi(CommandLineKeyValue* cmd) {
 }
 
 
-static const void TryConvertToMidi(bool* converted, CommandLineKeyValue* cmd, PressionRequest* actionOut, MidiAction* midiOut) {
-  *converted = false;
-  if (!IsKeyMidi(cmd)) return;
+static const bool TryConvertToMidi(CommandLineKeyValue* cmd, PressionRequest* actionOut, MidiAction* midiOut) {
+
+
+  if (!IsKeyMidi(cmd))
+    return false;
+
   GetPressionFromCharKey(cmd, actionOut);
   String values = cmd->value;
   int startIndex = values.indexOf(',');
@@ -163,9 +361,10 @@ static const void TryConvertToMidi(bool* converted, CommandLineKeyValue* cmd, Pr
   }
 
   midiOut->note = note;
-  midiOut->velocity = velocity ;
+  midiOut->velocity = velocity;
   midiOut->channel = channel;
-    *converted = true;
+
+  return true;
 }
 
 
