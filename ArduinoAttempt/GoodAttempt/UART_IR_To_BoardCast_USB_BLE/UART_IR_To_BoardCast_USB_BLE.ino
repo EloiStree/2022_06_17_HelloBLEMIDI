@@ -6,10 +6,10 @@
 #include "Adafruit_BluefruitLE_UART.h"
 #include "Adafruit_BLEMIDI.h"
 #include "BluefruitConfig.h"
+#include <USB-MIDI.h>
 #include "ConstVariable.h"
 #include <IRremote.hpp>
 #include "PinDefinitionsAndMore.h"  //Define macros for input and output pin etc.
-#include <USB-MIDI.h>
 #define FACTORYRESET_ENABLE 0
 #define MINIMUM_FIRMWARE_VERSION "0.6.6"
 #define MODE_LED_BEHAVIOUR "MODE"
