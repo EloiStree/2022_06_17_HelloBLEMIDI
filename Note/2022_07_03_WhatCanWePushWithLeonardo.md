@@ -95,3 +95,12 @@ KR:ctrl
 KR:shift  
 
 
+T:What ever text here // Will transit the text given to any output (bluetooth, serial, uart...)
+
+P:1,on P:1,HIGHT   // will toggle volate on (be carefull)
+P:1,off P:1,LOW // will toggle volate off (be carfull)
+
+F:DoStuff()  // will call function if you registered it in the arduino code
+
+F:Restart(); // force arduino restart
+
