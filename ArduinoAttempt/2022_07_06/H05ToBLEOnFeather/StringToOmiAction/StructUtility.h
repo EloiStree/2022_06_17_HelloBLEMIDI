@@ -34,10 +34,10 @@ struct KeyboardCharTryToStrokeAction{
   char toStroke;
 };
 struct KeyboardCharPrintAction{
-  char toPrint;
+  char toWrite;
 };
 struct KeyboardStringPrintAction{
-  String toPrint;
+  String toWrite;
 };
 struct WindowUnicodeIntPrintAction{
   int unicodeIntId;
@@ -99,7 +99,13 @@ struct CommandLineKeyValue{
 };
 
 
-enum KeyboardClassicKeyType {Space, Ctrl, Shift, DesktopOption, Alt, ShiftLock, Tab, Esc, Backspace, Enter, Menu, AltGR, Insert, Home, Delete, End, PageUp,PageDown};
+
+struct KeyboardControlString{
+  String stringKey;
+};
+
+enum KeyboardClassicKeyType {Space, Ctrl, Shift, DesktopOption, Alt, ShiftLock, Tab, Esc,
+ Backspace, Enter, Menu, AltGR, Insert, Home, Delete, End, PageUp,PageDown};
 enum KeyboardNumpadType {NumLock, Div, Multi, Sub, Add,  Point, NP0, _1, _2, _3, _4, _5, _6, _7, _8, _9};
 enum KeyboardArrowType {Left,Right,Up,Down};
 

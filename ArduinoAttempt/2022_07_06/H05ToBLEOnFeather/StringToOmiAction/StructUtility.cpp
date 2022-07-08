@@ -269,13 +269,13 @@ static const bool IsKeyCommand(CommandLineKeyValue* cmd) {
 //KeyboardAlphaStroke  KeyboardNumpadStroke
 static const bool TryConvertTo(CommandLineKeyValue* cmd, KeyboardNumpadStroke* actionOut) {
 
-if (!IsKeyCommand(cmd))
+  if (!IsKeyCommand(cmd))
     return false;
   if (cmd->valueLength > 0 && (cmd->value[0] == 'N' || cmd->value[0] == 'n')) {
     String s = cmd->value.substring(0);
     s = RemoveAllButDigit(s);
-    int value = 0; 
-    if (s.length()>0 && TryConvert_CharToDigit(s[0], &value)) {
+    int value = 0;
+    if (s.length() > 0 && TryConvert_CharToDigit(s[0], &value)) {
       actionOut->numberToStroke0To9 = value;
       return true;
     }
@@ -294,8 +294,8 @@ static const bool TryConvertTo(CommandLineKeyValue* cmd, KeyboardAlphaStroke* ac
   if (cmd->valueLength > 0 && (cmd->value[0] == 'A' || cmd->value[0] == 'a')) {
     String s = cmd->value.substring(0);
     s = RemoveAllButDigit(s);
-     int value = 0; 
-    if (s.length()>0 && TryConvert_CharToDigit(s[0], &value)) {
+    int value = 0;
+    if (s.length() > 0 && TryConvert_CharToDigit(s[0], &value)) {
       actionOut->numberToStroke0To9 = value;
       return true;
     }
@@ -325,6 +325,24 @@ static const bool TryConvertTo(CommandLineKeyValue* cmd, KeyboardFunctionStroke*
 
 
 
+//KeyboardAlphaStroke  KeyboardNumpadStroke
+static const bool TryConvertTo(CommandLineKeyValue* cmd, PrintDefaultSerialText* actionOut) {
+
+  if (cmd->keyLength > 0 && (cmd->key[0] == 'S' || cmd->key[0] == 's')) {
+    actionOut->textToPrint = cmd->value;
+    return true;
+  }
+  return false;
+}
+//KeyboardAlphaStroke  KeyboardNumpadStroke
+static const bool TryConvertTo(CommandLineKeyValue* cmd, CallFunctionInArduino* actionOut) {
+
+  if (cmd->keyLength > 0 && (cmd->key[0] == 'F' || cmd->key[0] == 'f')) {
+    actionOut->functionKeyName = cmd->value;
+    return true;
+  }
+  return false;
+}
 
 ////////////////////////////////////////// MIDI START
 
@@ -369,9 +387,49 @@ static const bool TryConvertToMidi(CommandLineKeyValue* cmd, PressionRequest* ac
 
 
 
+static const bool IsKeyPin(CommandLineKeyValue* cmd) {
+  char* m_midiStart[] = { 'P', 'p' };
+  return StartWith(m_midiStart, 2, cmd);
+}
 
+static const bool IsStringHight(String text) {
+  text.toUpperCase();
+  return text.equals("HIGH") || text.equals("HIGHT") || text.equals("ON") || text.equals("TRUE") || text.equals("1");
+}
 
-///////////////////////////MIDI STOP
+static const bool TryConvertTo(CommandLineKeyValue* cmd, PressionRequest* actionOut, SwitchPinAsStringMode* pinOut) {
+  if (!IsKeyPin(cmd))
+    return false;
+  GetPressionFromCharKey(cmd, actionOut);
+  pinOut->pinIdAsString = cmd->value;
+  return true;
+}
+
+static const bool TryConvertToControl(CommandLineKeyValue* cmd, PressionRequest* pression, KeyboardControlString* actionOut) {
+  if (!IsKeyCommand(cmd))
+    return false;
+  GetPressionFromCharKey(cmd, pression);
+  if ((pression->press && pression->release) || (!pression->press && !pression->release))
+    return false;
+  actionOut->stringKey = cmd->value;
+  return true;
+}
+static const bool TryConvertTo(CommandLineKeyValue* cmd, KeyboardStringPrintAction* actionOut) {
+  if (!IsKeyCommand(cmd))
+    return false;
+  actionOut->toWrite = cmd->value;
+  return true;
+}
+
+static const bool TryConvertTo(CommandLineKeyValue* cmd, PressionRequest* pression, KeyboardCharTryToStrokeAction* actionOut) {
+  if (!IsKeyCommand(cmd))
+    return false;
+  if (cmd->valueLength != 1)
+    return false;
+  GetPressionFromCharKey(cmd, pression);
+  actionOut->toStroke = cmd->value[0];
+  return true;
+}
 
 
 

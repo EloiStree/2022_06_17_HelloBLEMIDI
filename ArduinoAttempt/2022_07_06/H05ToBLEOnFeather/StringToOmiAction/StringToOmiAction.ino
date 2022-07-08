@@ -32,7 +32,6 @@ void loop() {
       sString = "";
     }
   }
-
     bool found =false;
   // MidiAction action =  MidiAction();
   // TryConvertToMidi(&found, &action);
@@ -60,38 +59,49 @@ void PushAsTest(String line){
 
   PushLine(line);
     if(useDelay)    
-      delay(1000);
+      delay(4000);
 }
 
 void TDDInput(){
 
-  PushAsTest("T:Some Message:io:lk");
-  PushAsTest("K:F12");
-  PushAsTest("K:F1");
-  PushAsTest("KP:F5");
-  PushAsTest("KR:F2");
-  PushAsTest("M:50");
-  PushAsTest("M:50,100,3");
-  PushAsTest("KP:A");
-  PushAsTest("KR:A");
-  PushAsTest("K:A7"); //Stroke 1 on alpha bar up the keyboard
-  PushAsTest("K:NP9");// Stroke 1 on the numpad
-  PushAsTest("K:N6"); // stroke 1 on the numpad
+// for (int i =0; i<4;i++){
+  
+//   PushAsTest("PP:13"); // Put the pin 1 on Hight
+//   PushAsTest("PR:13"); // Put the pin 1 on Hight
+//   PushAsTest("PP:13"); // Put the pin 1 on Hight
+//   PushAsTest("PR:13"); // Put the pin 1 on Hight
+// }
+  // PushAsTest("T:Some Message:io:lk");
+  // PushAsTest("K:F12");
+  // PushAsTest("K:F1");
+  // PushAsTest("KP:F5");
+  // PushAsTest("KR:F2");
+  // PushAsTest("M:50");
+  // PushAsTest("M:50,100,3");
+  // PushAsTest("KP:A");
+  // PushAsTest("KR:A");
+  // PushAsTest("K:A7"); //Stroke 1 on alpha bar up the keyboard
+  // PushAsTest("K:NP9");// Stroke 1 on the numpad
+  PushAsTest("K:N6"); // stroke 1 on the numpad  crash to correct;
   PushAsTest("K:F24"); // Stroke the F1 key
-  PushAsTest("K:Ctrl"); // Stroke the ctrl key
+  PushAsTest("KP:Ctrl"); // Stroke the ctrl key
+  PushAsTest("KR:Ctrl"); // Stroke the ctrl key
   PushAsTest("K:Control"); // Stroke the Control key
   PushAsTest("K:Left"); // Stroke the Control key
   PushAsTest("K:Up"); // Stroke the Control key
+  
+  PushAsTest("F:A"); // Call function A registered in Arduino if added
+  PushAsTest("S:Hello World!!!"); // Print Hello world on the arduino serial
 
+  PushAsTest("PP:13"); // Put the pin 1 on Hight
+  PushAsTest("PR:13"); // Put the pin 1 on Hight
 
-
-}void TryToMakeItCrash(){
-
+}
+void TryToMakeItCrash(){
   PushAsTest("T:Some T: Message:io:lk");
   PushAsTest("M:50:10:10:10");
   PushAsTest("M:50,10,10,10");
   PushAsTest("M:50,100,3");
-
 }
 
 

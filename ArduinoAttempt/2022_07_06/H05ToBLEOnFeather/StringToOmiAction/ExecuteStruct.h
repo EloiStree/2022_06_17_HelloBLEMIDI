@@ -6,9 +6,9 @@
 
  class KeyboardExecutor {
 
-
 public:
 KeyboardExecutor();
+
 void ExecuteKeyPressionAlt();
 void ExecuteKeyReleaseAlt();
 void ExecuteKeyPressionCtrl();
@@ -31,7 +31,7 @@ void ExecuteAsWindowUnicodeFromText(String unicodeAsText);
 void Execute(WindowUnicodeIntPrintAction* toExecute);
 void Execute(WindowUnicodeStringPrintAction* toExecute);
 void Execute(KeyboardStringPrintAction* toExecute);
-
+void Execute(KeyboardControlString* toExecute);
 void Execute(PressionRequest* pression , MidiAction* toExecute);
 void Execute(PressionRequest* pression , int hidUsbId);
 void Execute(PressionRequest* pression , KeyboardUSBIDAction* toExecute);
@@ -39,7 +39,7 @@ void Execute(PressionRequest* pression , KeyboardCharTryToStrokeAction* toExecut
 void Execute(PressionRequest* pression , KeyboardCharPrintAction* toExecute);
 void Execute(PressionRequest* pression , KeyboardAlphaStroke* toExecute);
 void Execute(PressionRequest* pression , KeyboardNumpadStroke* toExecute);
-void Execute(PressionRequest* pression , KeyboardFunctionStroke* toExecute);
+void Execute(PressionRequest* pression, KeyboardFunctionStroke* toExecute) ;
 
 void Execute(PressionRequest* pression , KeyboardArrowType* toExecute);
 void Execute(PressionRequest* pression , KeyboardNumpadType* toExecute);
@@ -47,6 +47,7 @@ void Execute(PressionRequest* pression , KeyboardClassicKeyType* toExecute);
 
 void Execute(PressionRequest* pression , SwitchPinIntMode* toExecute);
 void Execute(PressionRequest* pression , SwitchPinAsStringMode* toExecute);
+
 
 void Execute(PrintDefaultSerialText* toExecute);
 void Execute(TransitToAllSerialText* toExecute);
